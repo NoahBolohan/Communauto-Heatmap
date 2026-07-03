@@ -1,0 +1,41 @@
+project:
+  type: website
+
+lang: en
+
+website:
+  title: Communauto Trip Comparer
+  back-to-top-navigation: true
+  page-navigation: true
+
+  site-url: https://noah-bolohan.github.io/pCommunauto-Heatmap/
+  repo-url: https://github.com/NoahBolohan/Communauto-Heatmap
+  repo-actions: [issue, source]
+
+  navbar:
+    background: primary
+    search: true
+    left:
+      - text: "Overview"
+        href: index.qmd
+    right:
+    - icon: git
+      menu:
+        - text: Source code
+          url: https://github.com/NoahBolohan/Communauto-Heatmap
+        - text: Report an issue
+          url:  https://github.com/NoahBolohan/Communauto-Heatmap/-/issues/new
+
+format: 
+  html:
+    nav-buttons: 
+      - icon: github
+        href: https://github.com/NoahBolohan/Communauto-Heatmap
+    theme:
+      - minty
+
+    toc: true
+    html-table-processing: none
+
+execute:
+  freeze: auto
