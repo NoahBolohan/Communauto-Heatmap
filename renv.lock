@@ -1400,6 +1400,26 @@
       "Maintainer": "Yihui Xie <xie@yihui.name>",
       "Repository": "RSPM"
     },
+    "nationalparkcolors": {
+      "Package": "nationalparkcolors",
+      "Version": "0.1.0",
+      "Source": "GitHub",
+      "Type": "Package",
+      "Title": "National Park Inspired Color Schemes",
+      "Author": "Katie Jolly",
+      "Maintainer": "Katie Jolly <katiejolly6@gmail.com>",
+      "Description": "The WPA National Park posters provide beautiful color schemes for data visualization. This package provides a number of options based on different parks.",
+      "License": "CC0",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "RoxygenNote": "6.1.1",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "katiejolly",
+      "RemoteRepo": "nationalparkcolors",
+      "RemoteRef": "master",
+      "RemoteSha": "df8cd15d42f43004d41553f8cfd71523b305abeb"
+    },
     "openssl": {
       "Package": "openssl",
       "Version": "2.3.4",
