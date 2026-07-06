@@ -19,6 +19,8 @@ website:
     left:
       - text: "Overview"
         href: index.qmd
+      - text: "Longer trips"
+        href: longer_trips.qmd
     right:
     - icon: git
       menu:
