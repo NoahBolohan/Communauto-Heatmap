@@ -2,15 +2,99 @@
   {
     "objectID": "longer_trips.html",
     "href": "longer_trips.html",
-    "title": "Communauto Trip Comparer",
+    "title": "Longer trips",
     "section": "",
-    "text": "Back to top"
+    "text": "Fees not included:"
+  },
+  {
+    "objectID": "longer_trips.html#best-plan",
+    "href": "longer_trips.html#best-plan",
+    "title": "Longer trips",
+    "section": "Best plan",
+    "text": "Best plan"
+  },
+  {
+    "objectID": "longer_trips.html#open",
+    "href": "longer_trips.html#open",
+    "title": "Longer trips",
+    "section": "Open",
+    "text": "Open"
+  },
+  {
+    "objectID": "longer_trips.html#open-plus",
+    "href": "longer_trips.html#open-plus",
+    "title": "Longer trips",
+    "section": "Open Plus",
+    "text": "Open Plus"
+  },
+  {
+    "objectID": "longer_trips.html#value",
+    "href": "longer_trips.html#value",
+    "title": "Longer trips",
+    "section": "Value",
+    "text": "Value"
+  },
+  {
+    "objectID": "longer_trips.html#value-plus",
+    "href": "longer_trips.html#value-plus",
+    "title": "Longer trips",
+    "section": "Value Plus",
+    "text": "Value Plus"
+  },
+  {
+    "objectID": "longer_trips.html#value-extra",
+    "href": "longer_trips.html#value-extra",
+    "title": "Longer trips",
+    "section": "Value Extra",
+    "text": "Value Extra"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Fees not included:\n\nA minimum of 4 hours will be charged even for shorter trips if the final applied cost is that of the station-based vehicles of your plan\nSurcharge on displayed prices (time + km) of 15% for minivans and 10% for family vehicles.\nAn additional charge of $10 per extra day applies to all trips longer than 28 days\nDamage protection plan\nNot considering FLEX pass\nMonthly membership fee\nReducing Value plan to Open Plus\n\n\nBest planOpenOpen PlusValueValue PlusValue Extra\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top"
+    "text": "Fees not included:"
+  },
+  {
+    "objectID": "index.html#best-plan",
+    "href": "index.html#best-plan",
+    "title": "Home",
+    "section": "Best plan",
+    "text": "Best plan"
+  },
+  {
+    "objectID": "index.html#open",
+    "href": "index.html#open",
+    "title": "Home",
+    "section": "Open",
+    "text": "Open"
+  },
+  {
+    "objectID": "index.html#open-plus",
+    "href": "index.html#open-plus",
+    "title": "Home",
+    "section": "Open Plus",
+    "text": "Open Plus"
+  },
+  {
+    "objectID": "index.html#value",
+    "href": "index.html#value",
+    "title": "Home",
+    "section": "Value",
+    "text": "Value"
+  },
+  {
+    "objectID": "index.html#value-plus",
+    "href": "index.html#value-plus",
+    "title": "Home",
+    "section": "Value Plus",
+    "text": "Value Plus"
+  },
+  {
+    "objectID": "index.html#value-extra",
+    "href": "index.html#value-extra",
+    "title": "Home",
+    "section": "Value Extra",
+    "text": "Value Extra"
   }
 ]
