@@ -406,10 +406,12 @@ p <- ggplot(
   ) +
   theme_minimal()
 
-ggplotly(
-  p,
-  tooltip="tooltip"
-)
+p
+
+# ggplotly(
+#   p,
+#   tooltip="tooltip"
+# )
 ```
 
 ## Open
