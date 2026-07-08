@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://noah-bolohan.github.io/pCommunauto-Heatmap/longer_trips.html</loc>
-    <lastmod>2026-07-06T18:58:44.509Z</lastmod>
+    <loc>https://noah-bolohan.github.io/pCommunauto-Heatmap/medium_trips.html</loc>
+    <lastmod>2026-07-08T14:55:58.829Z</lastmod>
   </url>
   <url>
     <loc>https://noah-bolohan.github.io/pCommunauto-Heatmap/index.html</loc>
-    <lastmod>2026-07-06T19:01:09.734Z</lastmod>
+    <lastmod>2026-07-08T14:54:36.130Z</lastmod>
+  </url>
+  <url>
+    <loc>https://noah-bolohan.github.io/pCommunauto-Heatmap/longer_trips.html</loc>
+    <lastmod>2026-07-08T14:41:14.029Z</lastmod>
   </url>
 </urlset>

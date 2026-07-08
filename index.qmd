@@ -7,15 +7,34 @@ execute:
 ---
 
 ```{r "imports and variables - short trips"}
+library(renv)
+library(dplyr)
+library(purrr)
+library(ggplot2)
+library(plotly)
+library(paletteer)
+library(nationalparkcolors)
+library(scales)
+
 source("source.R")
 ```
 
 ```{r "Compute some dfs - short trips"}
 
-hours <- seq(0,8,0.5)
+hours <- seq(0,3,0.25)
 distance <- seq(0,50,5)
 
 costs_dfs = list()
+
+colour_palette <- paletteer_d("nationalparkcolors::Acadia")
+
+plan_colours <- c(
+  Open = colour_palette[[1]],
+  "Open Plus" = colour_palette[[2]],
+  Value = colour_palette[[3]],
+  "Value Plus" = colour_palette[[4]],
+  "Value Extra" = colour_palette[[5]]
+)
 
 for (
   plan_name in names(
@@ -30,13 +49,32 @@ for (
       )
     )
   ) {
-    costs_dfs[[plan_name]] <- get_costs(
+    colour <- plan_colours[[station_based_plans[[plan_name]]$name]]
+
+    costs_dfs[[station_based_plans[[plan_name]]$name]] <- get_costs(
       station_based_plans[[plan_name]],
       hours,
       distance
+    ) |>
+    mutate(
+      Colour = colour
     )
   }
 }
+
+costs_dfs[["Value"]] <- costs_dfs[["Value"]] |>
+  mutate(
+    open_plus_cost = costs_dfs[["Open Plus"]] |>
+      select(
+        total_cost
+      ) |>
+      pull(),
+    total_cost = if_else(
+      total_cost > open_plus_cost,
+      open_plus_cost,
+      total_cost
+    )
+  )
 
 max_cost <- max(
   unlist(
@@ -79,93 +117,155 @@ best_cost_df <- costs_dfs |>
   ) |>
   slice_min(
     total_cost
-  )
+  ) |>
+  ungroup()
 ```
 
 Fees not included:
 
-- A minimum of 4 hours will be charged even for shorter trips if the final applied cost is that of the station-based vehicles of your plan
+- An additional charge of $10 per extra day applies to all trips longer than 28 days (applies to all plans)
 - Surcharge on displayed prices (time + km) of 15% for minivans and 10% for family vehicles.
-- An additional charge of $10 per extra day applies to all trips longer than 28 days
-- Damage protection plan
-- Not considering FLEX pass
+- Damage protection plan (applies to all plans)
 - Monthly membership fee
-- Reducing Value plan to Open Plus
+
+For FLEX:
+
+- Not considering FLEX pass
+- A minimum of 4 hours will be charged even for shorter trips if the final applied cost is that of the station-based vehicles of your plan
 
 ## Best plan
 
 ```{r "best plan heatmap"}
-p <- ggplot(
+make_best_plan_heatmap(
   best_cost_df,
-  aes(
-    hours,
-    distance,
-    fill=plan_name,
-    text=tooltip
+  plan_colours
+)
+```
+
+## Cost per trip duration
+
+[Ottawa traffic report: average speeds (km/h) (2025)](https://www.tomtom.com/traffic-index/city/ottawa/)
+
+|                   | City | Metro
+| ---               | ---  | ---
+| All time          | 34.4 | 38.8
+| Morning rush hour | 31.1 | 35.0
+| Evening rush hour | 24.5 | 30.0
+
+```{r "cost per trip duration per plan"}
+hours <- seq(0,3,0.25)
+distance <- seq(0,350,0.1)
+
+costs_dfs = list()
+
+for (
+  plan_name in names(
+    station_based_plans
   )
-) + 
-  geom_tile() +
-  labs(
-    fill = "Plan",
-    x = "Hours",
-    y = "Distance (km)"
-  ) +
-  scale_fill_paletteer_d(
-    "nationalparkcolors::Acadia"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "bottom"
+) {
+  if (
+    !(
+      plan_name %in% c(
+        "flex",
+        "value_extra_workday"
+      )
+    )
+  ) {
+    colour <- plan_colours[[station_based_plans[[plan_name]]$name]]
+
+    costs_dfs[[station_based_plans[[plan_name]]$name]] <- get_costs(
+      station_based_plans[[plan_name]],
+      hours,
+      distance
+    ) |>
+    mutate(
+      Colour = colour
+    )
+  }
+}
+
+costs_dfs[["Value"]] <- costs_dfs[["Value"]] |>
+  mutate(
+    open_plus_cost = costs_dfs[["Open Plus"]] |>
+      select(
+        total_cost
+      ) |>
+      pull(),
+    total_cost = if_else(
+      total_cost > open_plus_cost,
+      open_plus_cost,
+      total_cost
+    )
   )
+```
 
-# p
+:::{.panel-tabset}
 
-ggplotly(
-  p,
-  tooltip="tooltip"
+## City, All time
+
+```{r "cost per trip duration - City, All time"}
+make_cost_per_plan_line_chart(
+  hours,
+  costs_dfs,
+  34.4,
+  plan_colours
 )
 ```
 
-## Open
+## Metro, All time
 
-```{r "open heatmap"}
-make_ggplotly(
-  costs_dfs$open,
-  max_cost
+```{r "cost per trip duration - Metro, All time"}
+make_cost_per_plan_line_chart(
+  hours,
+  costs_dfs,
+  38.8,
+  plan_colours
 )
 ```
 
-## Open Plus
+## City, Morning
 
-```{r "open plus heatmap"}
-make_ggplotly(
-  costs_dfs$open_plus,
-  max_cost
-)
-```
-## Value
-
-```{r "value heatmap"}
-make_ggplotly(
-  costs_dfs$value,
-  max_cost
+```{r "cost per trip duration - City, Morning"}
+make_cost_per_plan_line_chart(
+  hours,
+  costs_dfs,
+  31.1,
+  plan_colours
 )
 ```
 
-## Value Plus
+## Metro, Morning
 
-```{r "value plus heatmap"}
-make_ggplotly(
-  costs_dfs$value_plus,
-  max_cost
+```{r "cost per trip duration - Metro, Morning"}
+make_cost_per_plan_line_chart(
+  hours,
+  costs_dfs,
+  35.0,
+  plan_colours
 )
 ```
 
-## Value Extra
+## City, Evening
 
-```{r "value extra heatmap"}
-make_ggplotly(
-  costs_dfs$value_extra,
-  max_cost
+```{r "cost per trip duration - City, Evening"}
+make_cost_per_plan_line_chart(
+  hours,
+  costs_dfs,
+  24.5,
+  plan_colours
 )
 ```
+
+## Metro, Evening
+
+```{r "cost per trip duration - Metro, Evening"}
+make_cost_per_plan_line_chart(
+  hours,
+  costs_dfs,
+  30,
+  plan_colours
+)
+```
+
+:::
+

@@ -1,12 +1,12 @@
 ---
-title: "Longer trips"
+title: "Medium trips"
 execute:
   echo: false
   warning: false
   error: false
 ---
 
-```{r "imports and variables - longer trips"}
+```{r "imports and variables - medium trips"}
 library(renv)
 library(dplyr)
 library(purrr)
@@ -19,10 +19,10 @@ library(scales)
 source("source.R")
 ```
 
-```{r "Compute some dfs - longer trips"}
+```{r "Compute some dfs - medium trips"}
 
-hours <- seq(0,28*24,24)
-distance <- seq(0,50*28,50)
+hours <- seq(0,7*24,12)
+distance <- seq(0,50*7,50)
 
 costs_dfs = list()
 

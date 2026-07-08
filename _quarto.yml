@@ -17,10 +17,13 @@ website:
     background: primary
     search: true
     left:
-      - text: "Overview"
+      - text: "Shorter trips"
         href: index.qmd
+      - text: "Medium trips"
+        href: medium_trips.qmd
       - text: "Longer trips"
         href: longer_trips.qmd
+
     right:
     - icon: git
       menu:
@@ -35,7 +38,7 @@ format:
       - icon: github
         href: https://github.com/NoahBolohan/Communauto-Heatmap
     theme:
-      - minty
+      - flatly # + nationalparkscolors::Acadia
 
     toc: true
     html-table-processing: none

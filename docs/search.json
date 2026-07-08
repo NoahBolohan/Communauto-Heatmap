@@ -1,45 +1,10 @@
 [
   {
-    "objectID": "longer_trips.html#open",
-    "href": "longer_trips.html#open",
-    "title": "Longer trips",
-    "section": "Open",
-    "text": "Open"
-  },
-  {
-    "objectID": "longer_trips.html#open-plus",
-    "href": "longer_trips.html#open-plus",
-    "title": "Longer trips",
-    "section": "Open Plus",
-    "text": "Open Plus"
-  },
-  {
-    "objectID": "longer_trips.html#value",
-    "href": "longer_trips.html#value",
-    "title": "Longer trips",
-    "section": "Value",
-    "text": "Value"
-  },
-  {
-    "objectID": "longer_trips.html#value-plus",
-    "href": "longer_trips.html#value-plus",
-    "title": "Longer trips",
-    "section": "Value Plus",
-    "text": "Value Plus"
-  },
-  {
-    "objectID": "longer_trips.html#value-extra",
-    "href": "longer_trips.html#value-extra",
-    "title": "Longer trips",
-    "section": "Value Extra",
-    "text": "Value Extra"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "Fees not included:"
+    "text": "Fees not included:\nFor FLEX:"
   },
   {
     "objectID": "index.html#best-plan",
@@ -49,38 +14,10 @@
     "text": "Best plan"
   },
   {
-    "objectID": "index.html#open",
-    "href": "index.html#open",
+    "objectID": "index.html#cost-per-trip-duration",
+    "href": "index.html#cost-per-trip-duration",
     "title": "Home",
-    "section": "Open",
-    "text": "Open"
-  },
-  {
-    "objectID": "index.html#open-plus",
-    "href": "index.html#open-plus",
-    "title": "Home",
-    "section": "Open Plus",
-    "text": "Open Plus"
-  },
-  {
-    "objectID": "index.html#value",
-    "href": "index.html#value",
-    "title": "Home",
-    "section": "Value",
-    "text": "Value"
-  },
-  {
-    "objectID": "index.html#value-plus",
-    "href": "index.html#value-plus",
-    "title": "Home",
-    "section": "Value Plus",
-    "text": "Value Plus"
-  },
-  {
-    "objectID": "index.html#value-extra",
-    "href": "index.html#value-extra",
-    "title": "Home",
-    "section": "Value Extra",
-    "text": "Value Extra"
+    "section": "Cost per trip duration",
+    "text": "Cost per trip duration\nOttawa traffic report: average speeds (km/h) (2025)\n\n\n\n\nCity\nMetro\n\n\n\n\nAll time\n34.4\n38.8\n\n\nMorning rush hour\n31.1\n35.0\n\n\nEvening rush hour\n24.5\n30.0\n\n\n\n\nCity, All timeMetro, All timeCity, MorningMetro, MorningCity, EveningMetro, Evening"
   }
 ]

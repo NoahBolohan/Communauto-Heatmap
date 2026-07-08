@@ -1,11 +1,3 @@
-library(renv)
-library(dplyr)
-library(purrr)
-library(ggplot2)
-library(plotly)
-library(paletteer)
-library(nationalparkcolors)
-
 source("get_google_sheet.R")
 
 station_based_plans = list(
@@ -260,43 +252,145 @@ get_costs <- function(
     return(data)
 }
 
-make_ggplotly <- function(
-  data,
-  max_cost
+make_best_plan_heatmap <- function(
+  best_cost_df,
+  plan_colours
 ) {
-  p <- ggplot(
-    data,
-    aes(
-      hours,
-      distance,
-      fill=time_cost+distance_cost,
-      text=tooltip
+
+  x_diff <- diff(
+    sort(
+      unique(
+        best_cost_df$hours
+      )
     )
-  ) + 
-    geom_tile() +
+  )[1]
+
+  y_diff <- diff(
+    sort(
+      unique(
+        best_cost_df$distance
+      )
+    )
+  )[1]
+
+  plot_data <- best_cost_df |>
+    mutate(
+      x = as.numeric(hours),
+      y = as.numeric(distance),
+      ymin = y - .5*y_diff,
+      ymax = y + .5*y_diff
+    ) |>
+    mutate(
+      n = n(),
+      xmin = x + scales::rescale(
+        row_number(),
+        from = c(1, unique(n) + 1),
+        to = .5 *x_diff*c(-1, 1)
+      ),
+      xmax = x + scales::rescale(
+        row_number() + 1,
+        from = c(1, unique(n) + 1),
+        to = .5 *x_diff* c(-1, 1)
+      ),
+      .by = c(
+        hours,
+        distance
+      )
+    )
+
+  ggplot(
+    plot_data,
+    aes(
+      x = hours,
+      y = distance,
+      fill = plan_name
+    )
+  ) +
+    geom_rect(
+      aes(
+        xmin = xmin,
+        xmax = xmax,
+        ymin = ymin,
+        ymax = ymax
+      ),
+      color = "black", 
+      linewidth = 0.5
+    ) +
     labs(
-      fill = "Cost ($)",
+      fill = "Plan:",
       x = "Hours",
       y = "Distance (km)"
     ) +
-    scale_fill_gradient(
-      low = "white", 
-      high = "red",
-      limits = c(
-        0,
-        max_cost
-      )
+    scale_fill_manual(
+      values=plan_colours
     ) +
     theme_minimal() +
     theme(
-      legend.position = "bottom",
-      legend.direction = "horizontal"
+      legend.position = "bottom"
     )
 
-    p
+  # ggplotly(
+  #   p,
+  #   tooltip="tooltip"
+  # )
+}
 
-    # ggplotly(
-    #   p,
-    #   tooltip="tooltip"
-    # )
+make_cost_per_plan_line_chart <- function(
+  hours,
+  cost_dfs,
+  average_driving_speed,
+  plan_colours
+) {
+
+  distance <- average_driving_speed*hours
+
+  average_cost_per_duration <- lapply(
+    names(costs_dfs),
+    \(x) costs_dfs[[x]] |>
+      semi_join(
+        tibble(
+          hours = hours,
+          distance = distance
+        ),
+        by = c(
+          "hours",
+          "distance"
+        )
+      ) |>
+      select(
+        hours,
+        total_cost,
+        Colour
+      ) |>
+      mutate(
+        plan = x
+      )
+  ) |>
+  bind_rows()
+
+  ggplot(
+    average_cost_per_duration,
+    aes(
+      x = hours,
+      y = total_cost,
+      group = plan
+    )
+  ) +
+    geom_line(
+      aes(
+        colour = plan
+      ),
+      linewidth = 1
+    ) +
+    labs(
+      x = "Hours",
+      y = "Total Cost ($)"
+    ) +
+    scale_colour_manual(
+      values = plan_colours
+    ) + 
+    theme_minimal() +
+    theme(
+      legend.position = "bottom"
+    )
 }

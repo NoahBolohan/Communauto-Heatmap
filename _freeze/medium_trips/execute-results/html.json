@@ -1,0 +1,17 @@
+{
+  "hash": "c6fc4c35df224314d90f683d1769bf12",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Medium trips\"\nexecute:\n  echo: false\n  warning: false\n  error: false\n---\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n\n:::\n\n\n\n\n## Best plan\n\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](medium_trips_files/figure-html/best plan heatmap-1.png){width=672}\n:::\n:::",
+    "supporting": [
+      "medium_trips_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
